@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <title>Bugout demo server</title>
+  <title> demo server</title>
   <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.2/codemirror.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.2/mode/javascript/javascript.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.2/addon/edit/matchbrackets.min.js"></script>
@@ -20,7 +20,7 @@
 <pre id="log"></pre>
 </body>
 <script>
-  log("*BUGOUT*\n");
+  log("shadw\n");
   log("Server log started.\n");
 
   // instantiate our bugout instance
@@ -136,19 +136,24 @@
 // Edit this to change the live API this server is running:
 
 // respond to ping calls by sending back "pong"
-b.register("ping", function(pk, args, cb) {
+b.register("connect", function(pk, args, cb) {
+  args["connected"] = true;
+  cb(pk);
+}, "Respond to connect with 'pk'.");
+
+  b.register("connect", function(pk, args, cb) {
   args["pong"] = true;
   cb(args);
 }, "Respond to ping with 'pong'.");
 </script>
 <script>reload(document.getElementById("api-source").innerHTML);</script>
 <style>
-  body { background-color: #333; margin: 0px }
+  body { margin: 0px }
   pre { color: #eee; white-space: pre-wrap; word-wrap: break-word; line-height: 1em; margin: 1em; }
   .CodeMirror { height: auto; }
   #reload {
     border-radius: 5px;
-    background-color: #008C28;
+    background-color: black;
     color: white;
     border: none;
     padding: 0.25em 1em;
